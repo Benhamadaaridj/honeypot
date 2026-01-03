@@ -2,8 +2,10 @@ import socket
 import threading
 import logging
 import paramiko
+import uuid
 
-from core.fake_shell import handle_command
+from core.fake_shell import handle_command, FakeShell
+from core.logger import start_session, log_command, end_session
 
 HOST = "0.0.0.0"
 PORT = 2222
@@ -11,16 +13,16 @@ HOST_KEY = "ssh_host_key"
 
 logging.basicConfig(
     level=logging.INFO,
-    format='[%(asctime)s] %(levelname)s: %(message)s'
+    format="[%(asctime)s] %(levelname)s %(message)s"
 )
 
-class FakeSSHServer(paramiko.ServerInterface):
 
+class FakeSSHServer(paramiko.ServerInterface):
     def __init__(self):
         self.event = threading.Event()
 
     def check_auth_password(self, username, password):
-        logging.info(f"[SSH] Login attempt: {username}:{password}")
+        logging.info(f"[SSH] Login attempt {username}:{password}")
         return paramiko.AUTH_SUCCESSFUL
 
     def get_allowed_auths(self, username):
@@ -35,72 +37,85 @@ class FakeSSHServer(paramiko.ServerInterface):
         self.event.set()
         return True
 
-    # 🔴 رفض PTY بشكل صريح
-    def check_channel_pty_request(
-        self,
-        channel,
-        term,
-        width,
-        height,
-        pixelwidth,
-        pixelheight,
-        modes
-    ):
+    def check_channel_pty_request(self, *args):
         return False
 
 
 def handle_client(client, addr):
-    logging.info(f"[SSH] Connection from {addr[0]}")
-    transport = paramiko.Transport(client)
-    transport.add_server_key(paramiko.RSAKey(filename=HOST_KEY))
+    ip = addr[0]
+    session_id = str(uuid.uuid4())
 
-    server = FakeSSHServer()
-    transport.start_server(server=server)
+    logging.info(f"[SSH] Connection from {ip}")
 
-    chan = transport.accept(20)
-    if chan is None:
-        return
+    # 🔴 start session
+    start_session(ip, session_id, service="ssh")
 
-    server.event.wait(10)
+    transport = None
+    chan = None
 
-    session = {"user": "test"}
+    try:
+        transport = paramiko.Transport(client)
+        transport.add_server_key(paramiko.RSAKey(filename=HOST_KEY))
+        transport.start_server(server=FakeSSHServer())
 
-    # ✨ نطبع البرومبت مرة وحدة وبشكل نظيف
-    from core.fake_shell import FakeShell
-    shell = FakeShell(session["user"])
-    session["shell"] = shell
-    chan.send(shell.prompt())
+        chan = transport.accept(20)
+        if chan is None:
+            logging.warning(f"[SSH] No channel from {ip}")
+            return
 
-    while True:
-        try:
-            cmd = chan.recv(1024).decode().strip()
+        shell = FakeShell("test")
+        session = {"shell": shell}
+
+        chan.send(shell.prompt())
+
+        while True:
+            cmd = chan.recv(1024).decode(errors="ignore").strip()
             if not cmd:
                 continue
 
-            logging.info(f"[SSH] {addr[0]} command: {cmd}")
+            logging.info(f"[SSH] {ip} CMD: {cmd}")
 
-            output, should_exit = handle_command(cmd, session)
-            if should_exit:
+            # 🔴 log command
+            log_command(ip, session_id, cmd)
+
+            output, exit_flag = handle_command(cmd, session)
+
+            if exit_flag:
                 break
 
-            chan.send(output)
+            if output:
+                chan.send(output)
+
             chan.send(shell.prompt())
 
-        except Exception:
-            break
+    except Exception as e:
+        logging.error(f"[SSH] Error {ip}: {e}")
 
-    chan.close()
-    transport.close()
+    finally:
+        # 🔴 end session always
+        end_session(ip, session_id)
+
+        if chan:
+            chan.close()
+        if transport:
+            transport.close()
+
+        client.close()
+        logging.info(f"[SSH] Connection closed {ip}")
 
 
 def start_ssh():
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     sock.bind((HOST, PORT))
     sock.listen(100)
-    logging.info(f"[+] SSH honeypot listening on port {PORT}")
+
+    logging.info(f"[+] SSH Honeypot listening on port {PORT}")
 
     while True:
         client, addr = sock.accept()
-        t = threading.Thread(target=handle_client, args=(client, addr))
-        t.daemon = True
-        t.start()
+        threading.Thread(
+            target=handle_client,
+            args=(client, addr),
+            daemon=True
+        ).start()

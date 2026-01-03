@@ -1,0 +1,175 @@
+/* ===== Cold Security Dashboard – Professional ===== */
+
+:root {
+    --bg-main: #0a0f1a;
+    --bg-card: #0f172a;
+    --bg-header: #020617;
+    --row-hover: #111c33;
+
+    --text-main: #e5e7eb;
+    --text-muted: #94a3b8;
+
+    --accent: #38bdf8; /* cyan blue */
+    --border: #1e293b;
+
+    --font-main: "Inter", system-ui, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 32px;
+    font-family: var(--font-main);
+    background-color: var(--bg-main);
+    color: var(--text-main);
+}
+
+/* ===== Title ===== */
+h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--text-main);
+    letter-spacing: 0.5px;
+}
+
+h1::before {
+    content: "🍯 ";
+}
+
+/* ===== Table ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Header */
+thead {
+    background-color: var(--bg-header);
+}
+
+th {
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+}
+
+/* Cells */
+td {
+    padding: 14px 16px;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+}
+
+/* Hover */
+tbody tr:hover {
+    background-color: var(--row-hover);
+}
+
+/* IP column */
+td:first-child {
+    font-family: monospace;
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* Commands */
+td div {
+    font-family: monospace;
+    font-size: 0.85rem;
+    background-color: #020617;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 8px;
+    margin-bottom: 6px;
+    color: var(--text-main);
+}
+
+/* Limit width */
+td:last-child {
+    max-width: 420px;
+}
+
+/* Footer */
+footer {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    body {
+        padding: 16px;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+}
+/* ===== Controls ===== */
+.controls {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.controls input {
+    background-color: #020617;
+    border: 1px solid var(--border);
+    color: var(--text-main);
+    padding: 8px 12px;
+    border-radius: 6px;
+    width: 240px;
+}
+
+.controls button {
+    background-color: var(--accent);
+    border: none;
+    color: #020617;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.controls button:hover {
+    opacity: 0.85;
+}
+
+/* ===== Severity ===== */
+.severity {
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.severity.low {
+    background-color: rgba(56,189,248,0.15);
+    color: #38bdf8;
+}
+
+.severity.medium {
+    background-color: rgba(251,191,36,0.15);
+    color: #fbbf24;
+}
+
+.severity.high {
+    background-color: rgba(239,68,68,0.15);
+    color: #ef4444;
+}
