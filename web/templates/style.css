@@ -1,4 +1,4 @@
-/* ================= RESET ================= */
+/* ONLY FOR ADMIN AND INDEX */
 *{
   margin:0;
   padding:0;
@@ -11,14 +11,14 @@ html, body{
   height:100%;
 }
 
-/* ================= WELCOME PAGE ================= */
+/* ================= INDEX PAGE ================= */
 
 body.welcome{
   background: radial-gradient(ellipse at center, #f2f9fe 0%, #d6f0fd 100%);
   cursor: none;
 }
 
-/* CANVAS */
+
 canvas{
   position:fixed;
   top:0;
@@ -27,7 +27,6 @@ canvas{
   height:100%;
 }
 
-/* Dollar cursor */
 body.welcome #money{
   position: fixed;
   top: 0;
@@ -48,7 +47,6 @@ body.welcome #money{
   100%{ transform: translate(-50%, -50%) scale(1); }
 }
 
-/* WELCOME BOX */
 .container{
   position:absolute;
   top:50%;
@@ -101,7 +99,6 @@ body.admin{
   cursor: default;
 }
 
-/* ADMIN CONTAINER */
 #sign-up{
   position: relative;
   width: 1100px;
@@ -112,7 +109,6 @@ body.admin{
   box-shadow: 0px 0px 30px 20px rgba(0,0,0,0.12);
 }
 
-/* TITLES */
 #sign-up h1,
 #sign-up h2{
   margin: 30px 0;
@@ -126,7 +122,6 @@ body.admin{
   color: #a4b0be;
 }
 
-/* FORM */
 #sign-up form{
   width: 365.5px;
   position: relative;
@@ -164,7 +159,6 @@ body.admin{
   font-size:18px;
 }
 
-/* LOGIN BUTTON */
 #sign-up button{
   display:block;
   width:230px;
@@ -177,7 +171,6 @@ body.admin{
   cursor:pointer;
 }
 
-/* EXIT BUTTON */
 .exit-btn{
   display:block;
   width:230px;
@@ -197,7 +190,6 @@ body.admin{
   background:#e84118;
 }
 
-/* ADMIN IMAGE */
 #sign-up img{
   position:absolute;
   bottom:0px;   
@@ -205,3 +197,4 @@ body.admin{
   height:500px;
   z-index:1;
 }
+
