@@ -1,3 +1,5 @@
+/* ===== THIS SCRIPT FOR ADMIN AND INDEX  ===== */
+
 paper.install(window);
 
 window.onload = function () {
@@ -7,10 +9,8 @@ window.onload = function () {
 
     const moneySign = document.getElementById('money');
 
-    /* ===== MONEY POINT (Paper.js) ===== */
     let money = new Point(view.size.width / 2, view.size.height / 2);
 
-    /* ===== MOVE DOLLAR CURSOR (DOM) ===== */
     document.addEventListener('mousemove', (e) => {
         money.x = e.clientX;
         money.y = e.clientY;
@@ -19,7 +19,6 @@ window.onload = function () {
         moneySign.style.top  = e.clientY + 'px';
     });
 
-    /* ===== CREATE HANDS (CIRCLES) ===== */
     const hands = [];
 
     for (let i = 0; i < 40; i++) {
@@ -36,7 +35,6 @@ window.onload = function () {
         hands.push(hand);
     }
 
-    /* ===== ANIMATION LOOP ===== */
     view.onFrame = function () {
         hands.forEach(hand => {
 
@@ -60,6 +58,7 @@ window.onload = function () {
         return Math.random() * (b - a) + a;
     }
 };
+
 
 
 
