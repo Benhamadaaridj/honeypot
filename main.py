@@ -1,4 +1,5 @@
 import threading
+from services.http_service import start_http
 from services.ssh_service import start_ssh
 from services.ftp_service import start_ftp
 from services.ftp_backdoor import start_backdoor_listener
@@ -14,14 +15,17 @@ if __name__ == "__main__":
     t1 = threading.Thread(target=start_ssh)
     t2 = threading.Thread(target=start_ftp)
     t3 = threading.Thread(target=start_backdoor_listener)
+    t4 = threading.Thread(target=start_http)
 
     t1.daemon = True
     t2.daemon = True
     t3.daemon = True
+    t4.daemon = True
 
     t1.start()
     t2.start()
     t3.start()
+    t4.start()
 
     logging.info("[*] Honeypot running (SSH + FTP backdoor)")
 

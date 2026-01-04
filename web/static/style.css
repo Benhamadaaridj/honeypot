@@ -198,3 +198,9 @@ body.admin{
   z-index:1;
 }
 
+.error {
+    color: red;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
