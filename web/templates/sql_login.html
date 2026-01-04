@@ -1,195 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Database Access</title>
-
-<style>
-:root {
-    --bg: #f7f5fb;
-    --card: #ffffff;
-    --primary: #7cc6d8;   
-    --secondary: #f2b5d4;
-    --accent: #f6d186;   
-    --text: #2f2f3a;
-    --muted: #8b8fa8;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    height: 100vh;
-    background: linear-gradient(135deg, #f3f0fa, var(--bg));
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: "Segoe UI", sans-serif;
-    color: var(--text);
-}
-
-.card {
-    width: 360px;
-    background: var(--card);
-    border-radius: 18px;
-    padding: 28px;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.08);
-    animation: slideIn 0.9s ease;
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.header {
-    text-align: center;
-    margin-bottom: 22px;
-}
-
-.header svg {
-    width: 44px;
-    height: 44px;
-    fill: var(--primary);
-    animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-    100% { transform: translateY(0); }
-}
-
-.header h2 {
-    margin: 10px 0 4px;
-    font-size: 20px;
-}
-
-.header span {
-    font-size: 13px;
-    color: var(--muted);
-}
-
-.field {
-    margin-bottom: 14px;
-}
-
-.field input {
-    width: 100%;
-    padding: 12px;
-    border-radius: 10px;
-    border: 1px solid #e4e6f2;
-    background: #fafbff;
-    font-size: 14px;
-    transition: 0.3s;
-}
-
-.field input:focus {
-    outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(124,198,216,0.25);
-}
-
-button {
-    width: 100%;
-    padding: 12px;
-    border-radius: 12px;
-    border: none;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: white;
-    font-size: 15px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-button:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 10px 22px rgba(124,198,216,0.4);
-}
-
-.meta {
-    margin-top: 16px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-    color: var(--muted);
-}
-
-.meta div {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.meta svg {
-    width: 14px;
-    height: 14px;
-    fill: var(--accent);
-}
-
-.notice {
-    margin-top: 14px;
-    font-size: 11px;
-    color: var(--muted);
-    text-align: center;
-}
-</style>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-
 <body>
 
-<div class="card">
+<div id="sign-up">
 
-    <div class="header">
-        <svg viewBox="0 0 24 24">
-            <path d="M12 2C7 2 3 3.8 3 6v12c0 2.2 4 4 9 4s9-1.8 9-4V6c0-2.2-4-4-9-4zm0 2c4.4 0 7 .9 7 2s-2.6 2-7 2-7-.9-7-2 2.6-2 7-2zm0 16c-4.4 0-7-.9-7-2v-2c1.5 1.1 4.4 1.7 7 1.7s5.5-.6 7-1.7v2c0 1.1-2.6 2-7 2z"/>
-        </svg>
+<form method="POST" action="/sql_login">
+    <h1>Admin</h1>
 
-        <h2>Access Database</h2>
-        <span>Database authentication required</span>
-    </div>
+    {% if error %}
+    <p class="error">{{ error }}</p>
+    {% endif %}
 
-    <form method="POST">
-        <div class="field">
-            <input name="username" placeholder="Username">
-        </div>
-        <div class="field">
-            <input name="password" placeholder="Password">
-        </div>
+    <fieldset class="top">
+        <label>👤</label>
+        <input type="text" name="username" placeholder="Username"autocomplete="off"  required>
+    </fieldset>
 
-        <button type="submit">Query Login</button>
-    </form>
+    <fieldset>
+        <label>🔒</label>
+        <input type="password" name="password" placeholder="Password" autocomplete="new-password" required>
+    </fieldset>
 
-    <div class="meta">
-        <div>
+    <button type="submit">Login</button>
 
-            <svg viewBox="0 0 24 24">
-                <path d="M8 5l-5 7 5 7h2L5 12l5-7H8zm8 0h-2l5 7-5 7h2l5-7-5-7z"/>
-            </svg>
-            SQL: legacy
-        </div>
-
-        <div>
-            <svg viewBox="0 0 24 24">
-                <path d="M12 2l10 18H2L12 2zm0 7v4h1V9h-1zm0 6v2h1v-2h-1z"/>
-            </svg>
-            Filter: off
-        </div>
-    </div>
-
-    <div class="notice">
-        raw queries enabled · input not sanitized
-    </div>
+    <a href="/" class="exit-btn">✖ Exit</a>
+</form>
+    <img src="{{ url_for('static', filename='mony.png') }}" alt="money">
 
 </div>
 
 </body>
 </html>
+
