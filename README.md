@@ -1,8 +1,9 @@
 # Honeypot Project
 
 ## Overview
-This project implements a **multi-service honeypot** that simulates vulnerable **HTTP, SSH, and FTP** services.  
-The goal is to attract attackers, log malicious behavior, and study common attack techniques such as **brute force**, **SQL injection**, and **path traversal**, without exposing a real system.
+This project implements a multi-service honeypot designed to simulate vulnerable HTTP, SSH, and FTP services. Its objective is to attract and monitor malicious actors, record their behavior, and analyze common attack techniques such as brute-force authentication, SQL injection, and path traversal, without exposing a real system.
+
+The honeypot also enables direct observation of attacker activity through a simulated shell environment, allowing the study of post-exploitation behavior. In addition, it deceives attackers by emulating a vulnerable vsFTPd 2.4.5 service, encouraging exploitation attempts while safely capturing interaction data for analysis.
 
 ---
 
@@ -14,17 +15,14 @@ The goal is to attract attackers, log malicious behavior, and study common attac
 
 ## Installation
 
-
-
 Clone the repository:
-
+```bash
 git clone https://github.com/ayazrrouni/honey.git
 cd honeypot
+```
 
 Install required dependencies:
 ```bash
-git clone https://github.com/ayazrrouni/honey.git
-cd honey
 pip install flask paramiko
 ```
 ---
@@ -43,6 +41,7 @@ If everything works correctly, you should see:
 ```
 ---
 ## Open Dahsboard to view logs:
+In a new Terminal:
 ```bash
 
 python3 -m dashboard.app
@@ -52,7 +51,7 @@ visit :
 http://127.0.0.1:5000
 ```
 
-To view dashboaed on a search engin
+To view dashboaed on a browser
 
 ---
 
@@ -126,7 +125,6 @@ http://127.0.0.1/download?file=../../etc/passwd
 
 - No real database is used
 ```bash
-
 http://127.0.0.1/sql_login
 ```
 
