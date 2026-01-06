@@ -81,8 +81,8 @@ Try common commands:
 ```bash
 ls
 pwd
-id
-sudo -l
+mkdir
+cd
 ```
 #### All commands are simulated and logged.
 
@@ -162,6 +162,8 @@ Try commands:
 ```bash
 ls
 pwd
+id
+sudo -l
 ```
 
 #### All commands are simulated and logged.
