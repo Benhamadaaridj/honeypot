@@ -144,10 +144,13 @@ Try commands:
 ls
 pwd
 ```
-## Disclaimer
 
-> This project is for educational and research purposes only.
-> Do not deploy it on public networks or use it for illegal activities.
+
+> ⚠️ **DISCLAIMER**
+>  
+> This project is for **educational and research purposes only**.  
+> It is designed to be used **strictly within a local or LAN environment** and is **not exposed to the public internet**.  
+> Do **not** deploy this project on public networks or use it for illegal activities.
 
 
 
