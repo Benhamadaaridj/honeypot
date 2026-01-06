@@ -84,8 +84,8 @@ pwd
 id
 sudo -l
 ```
+#### All commands are simulated and logged.
 
-*All commands are simulated and logged.*
 ---
 
 ### 2) HTTP Honeypot
@@ -163,6 +163,9 @@ Try commands:
 ls
 pwd
 ```
+
+#### All commands are simulated and logged.
+
 ---
 
 > ⚠️ **DISCLAIMER**
