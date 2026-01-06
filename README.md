@@ -44,6 +44,16 @@ If everything works correctly, you should see:
 ║  HTTP       → port 80                        ║
 ║  Dashboard  → port 5000                     ║
 ╚══════════════════════════════════════════════╝
+[2026-01-06 10:39:27,925] INFO: [+] Starting SSH service
+[2026-01-06 10:39:27,926] INFO: [+] SSH Honeypot listening on port 2222
+[2026-01-06 10:39:27,926] INFO: [+] Starting FTP service
+[+] FTP service listening on port 21
+[2026-01-06 10:39:27,928] INFO: [+] Starting HTTP service
+[2026-01-06 10:39:27,928] INFO: HTTP service running on port 80
+[2026-01-06 10:39:27,930] INFO: [+] Starting DASHBOARD service
+[2026-01-06 10:39:27,931] INFO: Dashboard running on port 5000
+[2026-01-06 10:39:27,930] INFO: [*] All services started successfully
+
 
 ```
 ---
