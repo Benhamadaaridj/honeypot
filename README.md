@@ -136,7 +136,7 @@ admin' #
 ```
 ---
 
-### 6) FTP Honeypot
+### 3) FTP Honeypot
 
 Launch Metasploit:
 ```bash
