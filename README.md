@@ -127,7 +127,13 @@ http://127.0.0.1/download?file=../../etc/passwd
 ```bash
 http://127.0.0.1/sql_login
 ```
-
+Example test payloads (use in the username field):
+```text
+' OR 1=1 --
+' OR '1'='1
+admin' --
+admin' #
+```
 
 ### 4) FTP Honeypot
 
