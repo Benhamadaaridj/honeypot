@@ -17,7 +17,7 @@ The honeypot allows direct observation of attacker behavior through a simulated 
 
 Clone the repository:
 ```bash
-git clone https://github.com/ayazrrouni/honey.git
+git clone https://github.com/honeypot11012026/honeypot-project.git
 cd honeypot
 ```
 
@@ -36,16 +36,18 @@ sudo python3 main.py
 
 If everything works correctly, you should see:
 ```bash
-[+] HTTP Honeypot listening on port 80
-[+] SSH Honeypot listening on port 2222
+╔══════════════════════════════════════════════╗
+║              H O N E Y P O T                 ║
+╠══════════════════════════════════════════════╣
+║  SSH        → port 2222                      ║
+║  FTP        → port 21                        ║
+║  HTTP       → port 80                        ║
+║  Dashboard  → port 5000                     ║
+╚══════════════════════════════════════════════╝
+
 ```
 ---
-## Open Dahsboard to view logs:
-In a new Terminal:
-```bash
 
-python3 -m dashboard.app
-```
 visit :
 ```bash
 http://127.0.0.1:5000
@@ -73,7 +75,7 @@ id
 sudo -l
 ```
 
-All commands are simulated and logged.
+*All commands are simulated and logged.*
 ---
 
 ### 2) HTTP Honeypot
