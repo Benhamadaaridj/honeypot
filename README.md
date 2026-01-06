@@ -18,7 +18,7 @@ The honeypot allows direct observation of attacker behavior through a simulated 
 Clone the repository:
 ```bash
 git clone https://github.com/honeypot11012026/honeypot-project.git
-cd honeypot
+cd honeypot-project
 ```
 
 Install required dependencies:
