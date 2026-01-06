@@ -1,9 +1,9 @@
 # Honeypot Project
 
 ## Overview
-This project implements a multi-service honeypot designed to simulate vulnerable HTTP, SSH, and FTP services. Its objective is to attract and monitor malicious actors, record their behavior, and analyze common attack techniques such as brute-force authentication, SQL injection, and path traversal, without exposing a real system.
+This project implements a multi-service honeypot that simulates vulnerable SSH, FTP, and HTTP services. Its primary goal is to attract and monitor malicious actors, safely record their activities, and analyze common attack techniques such as brute-force authentication, SQL injection, and path traversal, without exposing any real system.
 
-The honeypot also enables direct observation of attacker activity through a simulated shell environment, allowing the study of post-exploitation behavior. In addition, it deceives attackers by emulating a vulnerable vsFTPd 2.4.5 service, encouraging exploitation attempts while safely capturing interaction data for analysis.
+The honeypot allows direct observation of attacker behavior through a simulated shell environment, enabling the study of post-exploitation actions after successful access attempts. Additionally, it emulates a vulnerable vsFTPd 2.4.5 FTP service, deliberately deceiving attackers and encouraging exploitation attempts while securely capturing all interaction data for research and educational analysis.
 
 ---
 
