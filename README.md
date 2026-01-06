@@ -93,7 +93,7 @@ http://127.0.0.1/admin
 http://127.0.0.1/admin/dashboard
 ```
 ---
-### 3) Brute Force Simulation
+### 2.1 Brute Force Simulation
 
 - Simulates a vulnerable login endpoint
 
@@ -105,7 +105,7 @@ http://127.0.0.1/admin/dashboard
 http://127.0.0.1/bruteforce
 ```
 ---
-### 4) Path Traversal / LFI Simulation
+### 2.2 Path Traversal / LFI Simulation
 
 - Simulates a Local File Inclusion vulnerability
 
@@ -117,7 +117,7 @@ http://127.0.0.1/bruteforce
 http://127.0.0.1/download?file=../../etc/passwd
 ```
 ---
-### 5) SQL Injection Honeypot
+### 2.3 SQL Injection Honeypot
 
 - Detects common SQL injection patterns
 
