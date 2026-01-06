@@ -144,7 +144,7 @@ Try commands:
 ls
 pwd
 ```
-
+---
 
 > ⚠️ **DISCLAIMER**
 >  
