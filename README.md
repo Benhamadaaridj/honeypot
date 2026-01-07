@@ -10,7 +10,7 @@ The honeypot allows direct observation of attacker behavior through a simulated 
 ## Requirements
 - Linux system  
 - Python 3  
-
+- Docker 
 ---
 
 ## Installation
@@ -23,11 +23,36 @@ cd honeypot-project
 
 Install required dependencies:
 ```bash
+python3 -m venv venv
+source venv/bin/activate
 pip install flask paramiko
 ```
 ---
 
 ## Running the Honeypot
+### Methode 1:
+Docker Deployment
+Build the Docker Image:
+```bash
+
+docker build -t honeypot .
+```
+---
+Run the Container:
+```bash
+docker run -it --rm \
+  --name honeypot \
+  --privileged \
+  -p 2222:2222 \
+  -p 21:21 \
+  -p 80:80 \
+  -p 5000:5000 \
+  -p 6200:6200 \
+  honeypot
+```
+---
+
+### Methode 2
 
 Start the honeypot (requires root privileges):
 ```bash
@@ -155,6 +180,7 @@ Launch Metasploit:
 msfconsole -q
 use exploit/unix/ftp/vsftpd_234_backdoor
 set RHOSTS 127.0.0.1
+run
 nc 127.0.0.1 6200
 ```
 
