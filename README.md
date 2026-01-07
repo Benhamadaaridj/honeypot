@@ -37,7 +37,7 @@ Build the Docker Image:
 
 docker build -t honeypot .
 ```
----
+
 Run the Container:
 ```bash
 docker run -it --rm \
